@@ -4,8 +4,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from './pages/home';
 import { Inicial } from './pages/telaInicial';
 import { PizzaDetailsScreen } from './pages/PizzaDetailsScreen';
-
 import { Ionicons } from '@expo/vector-icons';
+import { Pizzas } from './pages/Pizzas';
+import { Image } from 'react-native';
+import { DeliveryScreem, DeliveryScreen } from './pages/DeliveryScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -36,7 +38,7 @@ export function Routes() {
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Inicial') {
-            iconName = focused ? 'inicial' : 'inicial-outline'; // Defina o ícone para a rota 'Inicial'
+            iconName = focused ? 'inicial' : 'inicial-outline'; 
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -53,6 +55,26 @@ export function Routes() {
         component={HomeStack}
         options={{
           headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Pizzas"
+        component={Pizzas}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('./assets/icon-pizza.png')}
+              style={{ tintColor: color, width: size, height: size }}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Delivery"
+        component={DeliveryScreen}
+        options={{
+          headerShown: false
         }}
       />
     </Tab.Navigator>

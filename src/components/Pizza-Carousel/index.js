@@ -11,41 +11,53 @@ const pizzaData = [
     title: 'Pizza Margherita',
     description: 'Molho de tomate, mussarela, manjericão fresco',
     image: require("../../assets/margherita.jpg"),
+    precoMeia: 'R$ 20,00',
+    precoInteira: 'R$ 50,00'
   },
   {
     id: 2,
     title: 'Pepperoni',
     description: 'Molho de tomate, queijo, e fatias de pepperoni (salame de cura seco).',
     image: require("../../assets/pepperoni.jpg"),
+    precoMeia: 'R$ 20,00',
+    precoInteira: 'R$ 50,00'
   },
   {
     id: 3,
     title: 'Quatro Queijos',
     description: 'Molho de tomate, mussarela, gorgonzola, parmesão e provolone.',
     image: require("../../assets/quatroqueijos.png"),
+    precoMeia: 'R$ 25,00',
+    precoInteira: 'R$ 55,00'
   },
   {
     id: 4,
     title: 'Calabresa',
     description: 'Molho de tomate, queijo, linguiça calabresa fatiada e cebolas.',
     image: require("../../assets/calabresa.jpg"),
+    precoMeia: 'R$ 18,00',
+    precoInteira: 'R$ 35,00'
   },
   {
     id: 5,
     title: 'Frango com Catupiry',
     description: 'Molho de tomate, queijo, frango desfiado e catupiry (um tipo de requeijão cremoso).',
     image: require("../../assets/frango.jpg"),
+    precoMeia: 'R$ 18,00',
+    precoInteira: 'R$ 35,00'
   }
 ];
 
 const styles = {
   pizzaItemContainer: {
-    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 15,
   },
   pizzaImage: {
-    width: windowWidth * 0.2,
-    height: windowWidth * 0.2,
-    borderRadius: 100,
+    width: 300, 
+    height: 130, 
+    borderRadius: 10, 
   },
   textCenter: {
     textAlign: 'center',
@@ -57,29 +69,30 @@ const styles = {
     marginHorizontal: 8,
   },
   scrollViewContainer: {
+    marginBottom: 30,
+  },
+  scrollViewContentContainer: {
     flexDirection: 'row',
-    marginBottom: 45,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   arrowButton: {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: '#EF5350',
-    marginLeft: 5,
-    marginRight: 5
   },
 };
 
 export function PizzaCarousel() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const navigation = useNavigation(); // Obtenha a referência de navegação
+  const navigation = useNavigation();
 
   const renderPizzaItem = (pizza) => {
     return (
       <TouchableOpacity
         key={pizza.id}
         style={styles.pizzaItemContainer}
-        onPress={() => navigation.navigate('PizzaDetails', { pizza })} // Navegue para PizzaDetails ao clicar
+        onPress={() => navigation.navigate('PizzaDetails', { pizza })} 
       >
         <Image source={pizza.image} style={styles.pizzaImage} />
         <Text style={styles.textCenter}>{pizza.title}</Text>
@@ -115,23 +128,23 @@ export function PizzaCarousel() {
           </React.Fragment>
         ))}
       </ScrollView>
-      <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: -20 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: -20, alignItems: 'center' }}>
         {pizzaData.map((_, index) => (
           <View
             key={index}
             style={{
               ...styles.paginationDot,
-              backgroundColor: index === activeSlide ? 'rgba(0, 0, 0, 0.92)' : 'rgba(0, 0, 0, 0.2)',
+              backgroundColor: index === activeSlide ? '#EF5350' : 'rgba(0, 0, 0, 0.2)',
             }}
           />
         ))}
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: -10 }}>
         <TouchableOpacity style={styles.arrowButton} onPress={handlePrev}>
-          <Icon name="arrow-back" size={30} color="black" />
+          <Icon name="arrow-back" size={30} color="#EF5350" />
         </TouchableOpacity>
         <TouchableOpacity style={styles.arrowButton} onPress={handleNext}>
-          <Icon name="arrow-forward" size={30} color="black" />
+          <Icon name="arrow-forward" size={30} color="#EF5350" />
         </TouchableOpacity>
       </View>
     </View>
