@@ -197,7 +197,7 @@ const pizzaData = [
       marginBottom: 20,
     },
     pizzaContainer: {
-      width: windowWidth * 0.4, // 40% da largura da tela
+      width: windowWidth * 0.4, 
       margin: 10,
       alignItems: 'center',
     },

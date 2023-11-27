@@ -7,7 +7,15 @@ import { PizzaDetailsScreen } from './pages/PizzaDetailsScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { Pizzas } from './pages/Pizzas';
 import { Image } from 'react-native';
-import { DeliveryScreem, DeliveryScreen } from './pages/DeliveryScreen';
+import { DeliveryOption } from './pages/deliveryOption';
+import { PickupDelivery } from './pages/pickupDelivery';
+import { Deliver } from './pages/deliver';
+import { Payment } from './pages/payment';
+import { Profile } from './pages/profile';
+import { Register } from './pages/register';
+import { Login } from './pages/login';
+import { LoggedProfile } from './pages/logged';
+import { Carrinho } from './pages/carrinho';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -21,10 +29,32 @@ const HomeStack = () => (
         headerShown: false,
       }}
     />
-    <Stack.Screen name="PizzaDetails" component={PizzaDetailsScreen} />
+    <Stack.Screen name="PizzaDetails" component={PizzaDetailsScreen} options={{
+      headerShown: false,
+    }} />
     <Stack.Screen name="Inicial" component={Inicial} options={{
       headerShown: false,
     }} />
+    <Stack.Screen name="DeliveryOption" component={DeliveryOption} options={{
+      headerShown: false,
+    }} />
+    <Stack.Screen name="PickupDelivery" component={PickupDelivery} options={{
+      headerShown: false,
+    }} />
+    <Stack.Screen name="Deliver" component={Deliver} options={{
+      headerShown: false,
+    }} />
+    <Stack.Screen name="Payment" component={Payment} options={{
+      headerShown: false,
+    }} />
+    <Stack.Screen name="Register" component={Register} options={{
+      headerShown: false,
+    }} />
+    <Stack.Screen name="Login" component={Login} options={{
+      headerShown: false,
+    }}/>
+    <Stack.Screen name="LoggedProfile" component={LoggedProfile}/>
+    <Stack.Screen name="Carrinho" component={Carrinho}/>
   </Stack.Navigator>
 );
 
@@ -71,10 +101,16 @@ export function Routes() {
         }}
       />
       <Tab.Screen
-        name="Delivery"
-        component={DeliveryScreen}
+        name="Perfil"
+        component={Profile}
         options={{
-          headerShown: false
+          tabBarIcon: ({ color, size }) => (
+            <Image
+              source={require('./assets/icon-perfil.png')}
+              style={{ tintColor: color, width: size, height: size }}
+            />
+          ),
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
